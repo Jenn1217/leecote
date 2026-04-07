@@ -28,7 +28,7 @@ class Solution:
             #如果num在 num_Set就不用管
             #num不在才开始数数
             if num-1 not in num_set:
-                cur=num-1
+                cur=num
                 length=1
 
                 while cur+1 in num_set:
