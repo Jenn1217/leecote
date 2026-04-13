@@ -24,4 +24,31 @@ class Solution:
             count[pre]+=1
 
         return res 
+
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        #我建立一个哈希表，里面存的都是字符串前缀，
+        #因为这一题求的是前缀之间的差，所以我需要不断的把前缀和加入进去
+        #prefix[i] = prefix[j] - k
+        #时间：O(n)
+        #空间：O(n)
+        #前缀和 → 出现次数
+        indexmap={0:1}
+        #当前走到的位置的前缀和
+        cur_sum=0
+        #最终答案：满足条件的子数组个数
+        cnt=0
+
+        for i in nums:
+            cur_sum+=i
+
+            if cur_sum-k in indexmap:
+                #把“所有能和当前凑成 k 的历史前缀和个数”加到答案里
+                cnt+=indexmap[cur_sum-k]
+
+            indexmap[cur_sum]=indexmap.get(cur_sum,0)+1
+        
+        return cnt
+
             
